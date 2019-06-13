@@ -1,0 +1,14 @@
+Package: bbcharts
+Title: What the Package Does (One Line, Title Case)
+Version: 0.0.0.9000
+Authors@R: 
+    person(given = "Josiah",
+           family = "Parry",
+           role = c("aut", "cre"),
+           email = "josiah.parry@gmail.com")
+Description: bbcharts enables you to search Billboard chart for top artists and songs.
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 6.1.1
