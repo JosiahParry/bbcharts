@@ -83,5 +83,8 @@ chart_test <- chart_lookup %>%
 bad_charts <- chart_lookup[map_lgl(chart_test, ~nrow(.) == 0)]
 
 
+# write exported data
+usethis::use_data(chart_table)
 
-usethis::use_data(chart_table, chart_lookup, bad_charts, internal = TRUE)
+# write internal data
+usethis::use_data(chart_lookup, bad_charts, internal = TRUE)

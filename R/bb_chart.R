@@ -9,12 +9,13 @@
 #' @importFrom stringr str_split str_trim
 #' @importFrom tibble tibble
 #' @importFrom magrittr %>%
+#' @export
 bb_chart <- function(chart_url, date = Sys.Date()) {
 
   chart_date <- floor_date(date, "weeks")
 
 
-  ifelse(chart_url %in%  bbchart::bad_charts,
+  ifelse(chart_url %in% bad_charts,
          {
            base_url <- paste("https://www.billboard.com/charts", chart_url, sep = "/")
            warning("Chart does not use a date, `date` arg will be ignored.", call. = FALSE)

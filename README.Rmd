@@ -12,44 +12,56 @@ knitr::opts_chunk$set(
   out.width = "100%"
 )
 ```
-# bbchart
+# bbcharts
 
 <!-- badges: start -->
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
-[![CRAN status](https://www.r-pkg.org/badges/version/bbchart)](https://cran.r-project.org/package=bbchart)
+[![CRAN status](https://www.r-pkg.org/badges/version/bbcharts)](https://cran.r-project.org/package=bbcharts)
 <!-- badges: end -->
 
-The goal of bbchart is to ...
+The goal of bbcharts is to provide an interface to the Billboards top charts. 
 
 ## Installation
 
-You can install the released version of bbchart from [CRAN](https://CRAN.R-project.org) with:
+You can install the latest version of bbcharts from GitHub with:
 
 ``` r
-install.packages("bbchart")
+remotes::install_github("josiahparry/bbcharts")
 ```
 
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
+The "Hot 100" Billboard Chart 
 
-```{r example}
-library(bbchart)
-## basic example code
+```{r}
+library(bbcharts)
+
+bb_chart("hot-100")
 ```
 
-What is special about using `README.Rmd` instead of just `README.md`? You can include R chunks like so:
+Use `bbcharts` in conjunction with [`genius`](https://github.com/josiahparry/genius) to get the lyrics for songs on the top charts.
 
-```{r cars}
-summary(cars)
+```{r alt}
+library(dplyr)
+library(genius)
+alt <- bb_chart("alternative-songs")
+
+alt_lyrics <- alt %>% 
+  # get only the first 5 songs
+  slice(1:5) %>% 
+  # add lyrics to a data frame
+  add_genius(artist, title, type = "lyrics")
+
+alt_lyrics
+
 ```
 
-You'll still need to render `README.Rmd` regularly, to keep `README.md` up-to-date.
+## List possible charts
 
-You can also embed plots, for example:
+You can view all possible charts to query from using the `chart_table` that is exported.
 
-```{r pressure, echo = FALSE}
-plot(pressure)
+```{r}
+bbcharts::chart_table
 ```
 
-In that case, don't forget to commit and push the resulting figure files, so they display on GitHub!
+
