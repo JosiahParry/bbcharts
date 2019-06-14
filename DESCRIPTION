@@ -8,12 +8,12 @@ Authors@R:
            email = "josiah.parry@gmail.com")
 Description: bbcharts enables you to search Billboard chart for top artists and songs.
 Imports:
-  - magrittr
-  - purrr
-  - rvest
-  - lubridate
-  - tibble
-  - stringr
+  magrittr,
+  purrr,
+  rvest,
+  lubridate,
+  tibble,
+  stringr
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
