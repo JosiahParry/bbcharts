@@ -7,7 +7,9 @@
 bb_chart(chart_url, date = Sys.Date())
 }
 \arguments{
-\item{chart_url}{The url indicating the chart to search. See \code{bbchart::chart_table} for all available charts.}
+\item{chart_url}{The url indicating the chart to search. See \code{bbcharts::chart_table} for all available charts.}
+
+\item{date}{Get chart data for a specificed date (YYYY-MM-DD).}
 }
 \description{
 Retrieve information from a Billboard chart.

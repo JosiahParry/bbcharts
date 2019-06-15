@@ -5,7 +5,7 @@
 #' @param chart_url The url indicating the chart to search. See \code{bbcharts::chart_table} for all available charts.
 #' @param date Get chart data for a specificed date (YYYY-MM-DD).
 #' @importFrom lubridate floor_date
-#' @importFrom rvest html_session html_nodes html_text
+#' @importFrom rvest html_session html_nodes html_text html_node
 #' @importFrom purrr map pluck
 #' @importFrom stringr str_split str_trim
 #' @importFrom tibble tibble

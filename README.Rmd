@@ -65,3 +65,44 @@ bbcharts::chart_table
 ```
 
 
+## Artist Specific Chart Data
+
+There are a number of functions that provide Billboard chart data for a specific artist. 
+
+### Listing artist charts
+
+It is possible to list all of the charts that a given artist appears on using `list_artist_charts()`.
+
+```{r}
+list_artist_charts("Andrew Bird")
+```
+
+### Artist songs on a specific chart
+
+Using the information above we can list all of the songs on a chart from a given artist using `get_artist_chart_history()`. In this case we will look at Triple A Songs (adult alternative).
+
+```{r}
+get_artist_chart_history("Andrew Bird", "triple-a")
+```
+
+### All chart information for a given artist
+
+We can use the `add_chart_history()` function in conjunction with `list_artist_charts()` to get all chart history for an artist.
+
+```{r}
+list_artist_charts("Andrew Bird") %>% 
+  add_chart_history(artist = artist, chart_url = chart_url)
+```
+
+You can also do this for any mix of artists.
+
+```{r}
+tribble(
+  ~artist, ~chart,
+  "Andrew Bird", "triple-a",
+  "Taylor Swift", "hot-100"
+) %>% 
+  add_chart_history(artist, chart)
+```
+
+
