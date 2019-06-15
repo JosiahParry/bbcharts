@@ -2,7 +2,8 @@
 #'
 #' Retrieve information from a Billboard chart.
 #'
-#' @param chart_url The url indicating the chart to search. See \code{bbchart::chart_table} for all available charts.
+#' @param chart_url The url indicating the chart to search. See \code{bbcharts::chart_table} for all available charts.
+#' @param date Get chart data for a specificed date (YYYY-MM-DD).
 #' @importFrom lubridate floor_date
 #' @importFrom rvest html_session html_nodes html_text
 #' @importFrom purrr map pluck
@@ -50,13 +51,35 @@ bb_chart <- function(chart_url, date = Sys.Date()) {
     as.integer() %>%
     unlist()
 
+  last_week_position <- session %>%
+    html_nodes(".chart-list-item__extra-info") %>%
+    html_node(".chart-list-item__stats .chart-list-item__last-week") %>%
+    html_text(trim = TRUE) %>%
+    as.integer()
+
+
+  peak_position <- session %>%
+    html_nodes(".chart-list-item__extra-info") %>%
+    html_node(".chart-list-item__stats .chart-list-item__weeks-at-one") %>%
+    html_text(trim = TRUE) %>%
+    as.integer()
+
+  weeks_on_chart <- session %>%
+    html_nodes(".chart-list-item__extra-info") %>%
+    html_node(".chart-list-item__stats .chart-list-item__weeks-on-chart") %>%
+    html_text(trim = TRUE) %>%
+    as.integer()
+
   results <- tibble(
     rank = rank,
     date = chart_date,
+    chart = names(chart_lookup[chart_lookup == chart_url]),
     artist = artist,
     featured_artist = featured_artist,
     title = title,
-    chart = names(chart_lookup[chart_lookup == chart_url])
+    last_position = last_week_position,
+    peak_position = peak_position,
+    weeks_on_chart = weeks_on_chart
   )
 
   return(results)
