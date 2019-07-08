@@ -13,7 +13,7 @@
 #' @export
 bb_chart <- function(chart_url, date = Sys.Date()) {
 
-  chart_date <- floor_date(date, "weeks")
+  chart_date <- floor_date(as.Date(date), "weeks")
 
 
   ifelse(chart_url %in% bad_charts,
