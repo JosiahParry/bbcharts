@@ -2,6 +2,7 @@
 
 export(add_chart_history)
 export(bb_chart)
+export(decade_end_bb)
 export(get_artist_chart_history)
 export(list_artist_charts)
 export(year_end_bb)
