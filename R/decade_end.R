@@ -46,7 +46,7 @@ decade_end_bb <- function(chart_url) {
   results <- tibble(
     rank = rank,
     #year = chart_year,
-    chart = names(de_chart_lookup[de_chart_lookup == paste0("/charts/decade-end/", chart_url)]),
+    chart = names(de_chart_lookup[de_chart_lookup == chart_url]),
     artist = artist,
     featured_artist = featured_artist,
     title = title
