@@ -10,5 +10,5 @@ decade_end_bb(chart_url)
 \item{chart_url}{The url indicating the chart to search. See \code{bbcharts::de_chart_table} for all available charts.}
 }
 \description{
-Decade end Billboard chart
+Retrieve the Billboard decade end charts.
 }

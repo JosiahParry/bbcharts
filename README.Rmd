@@ -9,8 +9,12 @@ knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
   fig.path = "man/figures/README-",
-  out.width = "100%"
+  out.width = "100%",
+  eval=FALSE
 )
+
+library(bbcharts)
+
 ```
 # bbcharts
 
@@ -19,7 +23,8 @@ knitr::opts_chunk$set(
 [![CRAN status](https://www.r-pkg.org/badges/version/bbcharts)](https://cran.r-project.org/package=bbcharts)
 <!-- badges: end -->
 
-The goal of bbcharts is to provide an interface to the Billboards top charts. 
+`bbcharts` provides an interface to the Billboards top charts. There is functionality for accessing weekly charts, annual charts, and the decade end data is exported as an object `bbcharts::decade_end`.
+
 
 ## Installation
 
@@ -29,15 +34,42 @@ You can install the latest version of bbcharts from GitHub with:
 remotes::install_github("josiahparry/bbcharts")
 ```
 
-## Example
-
-The "Hot 100" Billboard Chart 
+## Decade End Charts
 
 ```{r}
-library(bbcharts)
-
-bb_chart("hot-100")
+count(bbcharts::decade_end, artist, sort = TRUE)
 ```
+
+## Year End Charts
+
+View all possible year end charts with `ye_chart_table`
+
+```{r}
+bbcharts::ye_chart_table
+```
+
+Identify which chart you would like then pass along that `chart_url` to `year_end_bb()` and the year you would like it for. Due to slight inconsistencies between charts, i.e. album, artist, and song charts, the artist and title fields may be swapped around. 
+
+```{r}
+year_end_bb("hot-100-songs", 1960)
+```
+
+
+## Weekly Charts
+
+You can retrieve weekly charts in a very similar manner as the yearly charts. To view the weekly charts use `bbcharts::chart_table`
+
+```{r}
+chart_table
+```
+
+Provide the name of the chart you want and the week you want it for in `yyyy-mm-dd` format. 
+
+```{r}
+bb_chart("hot-100", "2017-12-10")
+```
+
+## {bbcharts} + {genius} 
 
 Use `bbcharts` in conjunction with [`genius`](https://github.com/josiahparry/genius) to get the lyrics for songs on the top charts.
 
